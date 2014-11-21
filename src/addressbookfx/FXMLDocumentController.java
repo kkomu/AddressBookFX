@@ -18,6 +18,11 @@ import javafx.scene.control.Label;
  */
 public class FXMLDocumentController implements Initializable {
     
+    @FXML
+    private void handleCloseButton(ActionEvent e) {
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
