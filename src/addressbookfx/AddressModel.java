@@ -6,6 +6,7 @@
 package addressbookfx;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,4 +28,17 @@ public class AddressModel {
         return userData;
     }
     
+    public UserData getSingleUser(String userName) {
+        UserData found = null;
+        Iterator<UserData> iter = userData.iterator();
+        
+        while(iter.hasNext()) {
+            UserData u = iter.next();
+            if ( userName.equalsIgnoreCase(u.getFirstName()+" "+u.getLastName() )) {
+                found = u;
+            }
+        }
+        return found;
+    }
+
 }

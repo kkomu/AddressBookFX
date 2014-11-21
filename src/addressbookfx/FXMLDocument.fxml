@@ -36,8 +36,8 @@
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="lstFullName" prefHeight="200.0" prefWidth="200.0" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lstFullName" onMouseClicked="#handleListView" prefHeight="200.0" prefWidth="200.0" />
+                        <TextArea fx:id="txtInfoArea" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                </content>
