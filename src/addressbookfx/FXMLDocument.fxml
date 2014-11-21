@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="addressbookfx.FXMLDocumentController">
    <children>
       <TabPane prefHeight="430.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
@@ -17,15 +16,15 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="First name" />
-                        <TextField />
+                        <TextField fx:id="txtFirstName" />
                         <Label text="Last name" />
-                        <TextField />
+                        <TextField fx:id="txtLastName" />
                         <Label text="Address" />
-                        <TextField />
+                        <TextField fx:id="txtAddress" />
                         <Label text="Phone" />
-                        <TextField />
+                        <TextField fx:id="txtPhone" />
                         <Label text="Email" />
-                        <TextField />
+                        <TextField fx:id="txtEmail" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -33,11 +32,11 @@
                   </VBox>
                </content>
           </Tab>
-          <Tab text="Browse adresses">
+          <Tab fx:id="tabBrowseAddress" onSelectionChanged="#handleBrowseTab" text="Browse adresses">
                <content>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="lstFullName" prefHeight="200.0" prefWidth="200.0" />
                         <TextArea prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </HBox>
@@ -52,7 +51,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Save">
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#handleSaveButton" text="Save">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>

@@ -19,6 +19,8 @@ public class AddressBookFX extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        //AddressModel model = new AddressModel();
+        
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
