@@ -58,6 +58,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void handleCloseButton(ActionEvent e) {
+        model.saveUserDataToFile();
         Platform.exit();
     }
     
@@ -76,8 +77,7 @@ public class FXMLDocumentController implements Initializable {
         txtPhone.clear();
         txtEmail.clear();
     }
-    
-    
+
     @FXML
     private void handleBrowseTab(Event e) {
 
@@ -89,7 +89,9 @@ public class FXMLDocumentController implements Initializable {
             lstFullName.setItems(items);
             btnSave.setVisible(false);
         }
-        
+        else {
+            btnSave.setVisible(true);
+        }
     }
     
     @FXML
