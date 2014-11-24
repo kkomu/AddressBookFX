@@ -56,6 +56,16 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Button>
+            <Button fx:id="btnOrganize" mnemonicParsing="false" onAction="#handleOrganizeButton" text="Organize">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="50.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteButton" stylesheets="@AddressBookStyle.css" text="Delete">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
          </children>
          <VBox.margin>
             <Insets />

@@ -33,6 +33,12 @@ public class FXMLDocumentController implements Initializable {
     Button btnSave;
     
     @FXML
+    Button btnDelete;
+    
+    @FXML
+    Button btnOrganize;
+    
+    @FXML
     TextField txtFirstName;
     
     @FXML
@@ -57,6 +63,13 @@ public class FXMLDocumentController implements Initializable {
     TextArea txtInfoArea;
     
     @FXML
+    private void handleOrganizeButton(ActionEvent e) {
+        model.arrangeUserDataArray();
+        updateListView();
+        txtInfoArea.clear();
+    }
+    
+    @FXML
     private void handleCloseButton(ActionEvent e) {
         model.saveUserDataToFile();
         Platform.exit();
@@ -77,26 +90,43 @@ public class FXMLDocumentController implements Initializable {
         txtPhone.clear();
         txtEmail.clear();
     }
-
+    
+    @FXML
+    private void handleDeleteButton(ActionEvent e) {
+        String userName = (String) lstFullName.getSelectionModel().getSelectedItem();
+        model.deleteUserFromArray(userName);
+        updateListView();
+        txtInfoArea.clear();
+    }
+    
     @FXML
     private void handleBrowseTab(Event e) {
 
         if (tabBrowseAddress.isSelected()) {
-            ObservableList<String> items = FXCollections.observableArrayList();
-            for(UserData u: model.returnUserArray() ) {
-                items.add(u.getFirstName()+" "+u.getLastName());
-            }
-            lstFullName.setItems(items);
+            updateListView();
+            txtInfoArea.clear();
             btnSave.setVisible(false);
+            btnDelete.setVisible(true);
+            btnOrganize.setVisible(true);
         }
         else {
+            btnOrganize.setVisible(false);
             btnSave.setVisible(true);
+            btnDelete.setVisible(false);
         }
     }
     
+    private void updateListView() {
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(UserData u: model.returnUserArray() ) {
+            items.add(u.getFirstName()+" "+u.getLastName());
+        }
+        lstFullName.setItems(items);
+    }
+    
+       
     @FXML
     protected void handleListView(Event e) {
-        //System.out.printf("%s\n",lstFullName.getSelectionModel().getSelectedItem());
         String userName = (String) lstFullName.getSelectionModel().getSelectedItem();
         UserData user = model.getSingleUser(userName);
         
@@ -111,7 +141,4 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
-    
-    
 }

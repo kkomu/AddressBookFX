@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Ohjelmistokehitys
  */
-public class UserData implements Serializable {
+public class UserData implements Serializable, Comparable {
     private String firstName;
     private String lastName;
     private String address;
@@ -56,6 +56,13 @@ public class UserData implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        UserData u = (UserData)o;
+        
+        return this.getLastName().compareTo(u.getLastName());
     }
     
 }

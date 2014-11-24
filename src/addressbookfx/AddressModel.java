@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +30,27 @@ public class AddressModel {
         userData.add(user);
     }
     
+    public void arrangeUserDataArray() {
+        Collections.sort(userData);
+    }
+    
+    public void deleteUserFromArray(String userName) {
+        int index=0;
+        UserData found = null;
+        Iterator<UserData> iter = userData.iterator();
+        
+         while(iter.hasNext()) {
+            UserData u = iter.next();
+            if ( userName.equalsIgnoreCase(u.getFirstName()+" "+u.getLastName() )) {
+                //synchronized(userData) {
+                    userData.remove(index);
+                    break;
+                //}
+            }
+            index++;
+        }
+    }
+    
     public List<UserData> returnUserArray() {
         return userData;
     }
@@ -41,6 +63,7 @@ public class AddressModel {
             UserData u = iter.next();
             if ( userName.equalsIgnoreCase(u.getFirstName()+" "+u.getLastName() )) {
                 found = u;
+                break;
             }
         }
         return found;
@@ -61,7 +84,7 @@ public class AddressModel {
              }
         }
         catch (Exception e) {
-            System.out.println("Something went wrong");
+            System.out.println(e.getMessage());
         }
         finally {
             if (outObj != null) {
@@ -69,7 +92,7 @@ public class AddressModel {
                     outObj.close();
                 }
                 catch (Exception e) {
-                    System.out.println("Can't close object stream!");
+                    System.out.println(e.getMessage());
                 }
             }
                 
@@ -78,7 +101,7 @@ public class AddressModel {
                     outFile.close();
                 }
                 catch (Exception e) {
-                    System.out.println("Can't close file stream!");
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -98,7 +121,7 @@ public class AddressModel {
             }
         }
         catch (Exception e) {
-            System.out.println("Something went wrong in reading file!");
+            System.out.println(e.getMessage());
         }
         finally {
             if (inObj != null) {
@@ -106,7 +129,7 @@ public class AddressModel {
                     inObj.close();
                 }
                 catch (Exception e) {
-                    System.out.println("Can't close object stream!");
+                    System.out.println(e.getMessage());
                 }
             }
                 
@@ -115,7 +138,7 @@ public class AddressModel {
                     inFile.close();
                 }
                 catch (Exception e) {
-                    System.out.println("Can't close file stream!");
+                    System.out.println(e.getMessage());
                 }
             }
         }
