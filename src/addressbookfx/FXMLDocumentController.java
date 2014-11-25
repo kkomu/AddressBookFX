@@ -28,15 +28,18 @@ import javafx.scene.control.TextField;
  */
 public class FXMLDocumentController implements Initializable {
     private AddressModel model = new AddressModel();
+
+    @FXML
+    Button btnSort;
+    
+    @FXML
+    Button btnAdd;
     
     @FXML
     Button btnSave;
     
     @FXML
     Button btnDelete;
-    
-    @FXML
-    Button btnOrganize;
     
     @FXML
     TextField txtFirstName;
@@ -63,20 +66,7 @@ public class FXMLDocumentController implements Initializable {
     TextArea txtInfoArea;
     
     @FXML
-    private void handleOrganizeButton(ActionEvent e) {
-        model.arrangeUserDataArray();
-        updateListView();
-        txtInfoArea.clear();
-    }
-    
-    @FXML
-    private void handleCloseButton(ActionEvent e) {
-        model.saveUserDataToFile();
-        Platform.exit();
-    }
-    
-    @FXML
-    private void handleSaveButton(ActionEvent e) {
+    private void handleAddButton(ActionEvent e) {
         UserData user = new UserData();
         user.setFirstName(txtFirstName.getText());
         user.setLastName(txtLastName.getText());
@@ -89,6 +79,16 @@ public class FXMLDocumentController implements Initializable {
         txtAddress.clear();
         txtPhone.clear();
         txtEmail.clear();
+    }
+        
+    @FXML
+    private void handleCloseButton(ActionEvent e) {
+        Platform.exit();
+    }
+    
+    @FXML
+    private void handleSaveButton(ActionEvent e) {
+        model.saveUserDataToFile();
     }
     
     @FXML
@@ -105,26 +105,18 @@ public class FXMLDocumentController implements Initializable {
         if (tabBrowseAddress.isSelected()) {
             updateListView();
             txtInfoArea.clear();
-            btnSave.setVisible(false);
-            btnDelete.setVisible(true);
-            btnOrganize.setVisible(true);
+            btnAdd.setDisable(true);
+            btnSave.setDisable(false);
+            btnDelete.setDisable(false);
+            
         }
         else {
-            btnOrganize.setVisible(false);
-            btnSave.setVisible(true);
-            btnDelete.setVisible(false);
+            btnAdd.setDisable(false);
+            btnSave.setDisable(false);
+            btnDelete.setDisable(true);
         }
     }
     
-    private void updateListView() {
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for(UserData u: model.returnUserArray() ) {
-            items.add(u.getFirstName()+" "+u.getLastName());
-        }
-        lstFullName.setItems(items);
-    }
-    
-       
     @FXML
     protected void handleListView(Event e) {
         String userName = (String) lstFullName.getSelectionModel().getSelectedItem();
@@ -135,6 +127,21 @@ public class FXMLDocumentController implements Initializable {
         txtInfoArea.appendText("Address: "+user.getAddress()+"\n");
         txtInfoArea.appendText("Phone: "+user.getPhone()+"\n");
         txtInfoArea.appendText("Email: "+user.getEmail()+"\n");
+    }
+    
+    @FXML
+    private void handleSortButton(ActionEvent e) {
+        model.sortUserDataArray();
+        updateListView();
+        txtInfoArea.clear();
+    }
+    
+    private void updateListView() {
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(UserData u: model.returnUserArray() ) {
+            items.add(u.getFirstName()+" "+u.getLastName());
+        }
+        lstFullName.setItems(items);
     }
     
     @Override

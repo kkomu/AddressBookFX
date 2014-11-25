@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -34,19 +35,48 @@
           </Tab>
           <Tab fx:id="tabBrowseAddress" onSelectionChanged="#handleBrowseTab" text="Browse adresses">
                <content>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <VBox prefHeight="301.0" prefWidth="600.0">
                      <children>
-                        <ListView fx:id="lstFullName" onMouseClicked="#handleListView" prefHeight="200.0" prefWidth="200.0" />
-                        <TextArea fx:id="txtInfoArea" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox prefHeight="31.0" prefWidth="600.0">
+                           <children>
+                              <Button fx:id="btnSort" mnemonicParsing="false" onAction="#handleSortButton" text="Sort">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="253.0" prefWidth="600.0">
+                           <children>
+                              <ListView fx:id="lstFullName" onMouseClicked="#handleListView" prefHeight="183.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ListView>
+                              <TextArea fx:id="txtInfoArea" prefHeight="300.0" prefWidth="200.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </TextArea>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </content>
           </Tab>
         </tabs>
       </TabPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#handleCloseButton" text="Close">
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#handleAddButton" text="Add">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -56,12 +86,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnOrganize" mnemonicParsing="false" onAction="#handleOrganizeButton" text="Organize">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="50.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#handleDeleteButton" stylesheets="@AddressBookStyle.css" text="Delete">
+            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#handleCloseButton" text="Close">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>

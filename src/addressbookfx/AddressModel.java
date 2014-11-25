@@ -30,7 +30,7 @@ public class AddressModel {
         userData.add(user);
     }
     
-    public void arrangeUserDataArray() {
+    public void sortUserDataArray() {
         Collections.sort(userData);
     }
     
@@ -41,6 +41,8 @@ public class AddressModel {
         
          while(iter.hasNext()) {
             UserData u = iter.next();
+            // Concurrent-something exception if not breaking out from the loop
+            // (iterating and deleting from array simultaneously
             if ( userName.equalsIgnoreCase(u.getFirstName()+" "+u.getLastName() )) {
                 //synchronized(userData) {
                     userData.remove(index);
@@ -72,8 +74,7 @@ public class AddressModel {
     public void saveUserDataToFile() {
         FileOutputStream outFile = null;
         ObjectOutputStream outObj = null;
-    
-        
+
         Iterator<UserData> iter = userData.iterator();
         
         try {
